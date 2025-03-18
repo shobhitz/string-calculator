@@ -1,6 +1,6 @@
 
 const checkNegative = (num) => {
-  return num <= 0
+  return num < 0
 }
 
 export const calculate = (str) => {
@@ -9,7 +9,7 @@ export const calculate = (str) => {
   let sum = 0
   // skip negative numbers
   const negative = nums.filter(checkNegative);
-  if (negative.length) {
+  if (negative.length > 0) {
     return "negative numbers not allowed " + negative.join(",")
   }
 
