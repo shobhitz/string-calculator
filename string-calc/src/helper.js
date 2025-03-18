@@ -4,7 +4,8 @@ const checkNegative = (num) => {
 }
 
 export const calculate = (str) => {
-  const nums = str.split(',')
+  const nums = str.split(/[\s,\\n]+/)
+
   const len = nums.length
   let sum = 0
   // skip negative numbers
