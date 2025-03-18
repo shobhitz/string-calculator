@@ -41,6 +41,14 @@ const data = [
   //9
   { query: "//>\n1>2>3>5>6>8>4",
     expect: "29"
+  },
+  //10
+  { query: "-1",
+    expect: "negative numbers not allowed -1"
+  },
+  //11
+  { query: "-1,-2,-3",
+    expect: "negative numbers not allowed -1,-2,-3"
   }
 ]
 
@@ -169,6 +177,30 @@ describe("String Calculator", () => {
   test('should return sum with custom delimiter 3(>)', () =>{
     render(<App />);
     const testData = data[9]
+    const calculateBtn = screen.getByRole('button')
+    const queryElem = screen.getByLabelText('Query')
+
+    fireEvent.change(queryElem, {target: {value: testData.query}});
+    
+    fireEvent.click(calculateBtn)
+    expect(screen.getByLabelText('Result')).toHaveValue(testData.expect)
+  })
+
+  test('should throw error with negative number', () =>{
+    render(<App />);
+    
+    const testData = data[10]
+    const calculateBtn = screen.getByRole('button')
+    const queryElem = screen.getByLabelText('Query')
+    fireEvent.change(queryElem, {target: {value: testData.query}});
+    fireEvent.click(calculateBtn)
+    
+    expect(screen.getByLabelText('Result')).toHaveValue(testData.expect)
+  })
+
+  test('should throw error with multiple negative number', () =>{
+    render(<App />);
+    const testData = data[11]
     const calculateBtn = screen.getByRole('button')
     const queryElem = screen.getByLabelText('Query')
 
