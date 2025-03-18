@@ -1,5 +1,6 @@
 import './App.css';
-import {useState} from 'react';
+import {useState } from 'react';
+import { calculate } from './helper';
 
 function App() {
 
@@ -7,16 +8,7 @@ function App() {
   const [output, setOutput] = useState("");
 
   const calc = () => {
-    const nums = input.split(',')
-    const len = nums.length
-    let sum = 0
-    
-    for(let i =0;i<len;i++){
-      const num = Number(nums[i])
-      if(num >= 0){
-        sum += num
-      }
-    }
+    const sum = calculate(input)
     setOutput(sum)
   }
 
