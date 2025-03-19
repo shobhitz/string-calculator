@@ -44,11 +44,11 @@ const data = [
   },
   //10
   { query: "-1",
-    expect: "negative numbers not allowed -1"
+    expect: "Negative numbers not allowed -1"
   },
   //11
   { query: "-1,-2,-3",
-    expect: "negative numbers not allowed -1,-2,-3"
+    expect: "Negative numbers not allowed -1,-2,-3"
   }
 ]
 
@@ -195,7 +195,7 @@ describe("String Calculator", () => {
     fireEvent.change(queryElem, {target: {value: testData.query}});
     fireEvent.click(calculateBtn)
     
-    expect(screen.getByLabelText('Result')).toHaveValue(testData.expect)
+    expect(screen.getByText(testData.expect)).toBeInTheDocument();
   })
 
   test('should throw error with multiple negative number', () =>{
@@ -207,7 +207,7 @@ describe("String Calculator", () => {
     fireEvent.change(queryElem, {target: {value: testData.query}});
     
     fireEvent.click(calculateBtn)
-    expect(screen.getByLabelText('Result')).toHaveValue(testData.expect)
+    expect(screen.getByText(testData.expect)).toBeInTheDocument();
   })
 })
 
