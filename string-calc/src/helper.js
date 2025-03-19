@@ -41,7 +41,7 @@ export const calculate = (str) => {
   // skip negative numbers
   const negative = nums.filter(checkNegative);
   if (negative.length > 0) {
-    return "negative numbers not allowed " + negative.join(",")
+    return "Negative numbers not allowed " + negative.join(",")
   }
 
   for(let i =0;i<len;i++){
