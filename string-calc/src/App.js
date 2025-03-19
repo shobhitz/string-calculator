@@ -1,6 +1,7 @@
 import './App.css';
 import {useState } from 'react';
 import { calculate } from './helper';
+import {Input, Button, Alert} from 'antd';
 
 function App() {
 
@@ -25,19 +26,23 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <>
       <header>String Calculator</header>
-      <label id="query-label">Query</label>
-      <input aria-labelledby="query-label" value={input} onChange={(e) => setInput(e.target.value)} />
-      <button type="submit" name="calculate" onClick={calc}>Calculate</button>
-
-      <label id="result">Result</label>
-      <input aria-labelledby="result" value={output} readOnly/>
-
-      {errorMsg && (
-        <p name={'error'}>{errorMsg}</p>
-      )}
-    </div>
+      <div className="app">
+        {errorMsg && (
+          <Alert message={errorMsg} type='error' showIcon />
+        )}
+        <div className='query'>
+          <label id="query-label">Query</label>
+          <Input aria-labelledby="query-label" value={input} onChange={(e) => setInput(e.target.value)} />
+          <Button type="primary" name="calculate" onClick={calc}>Calculate</Button>
+        </div>
+        <div className='response'>
+          <label id="result">Result</label>
+          <Input aria-labelledby="result" value={output} readOnly/>
+        </div>
+      </div>
+    </>
   );
 }
 
